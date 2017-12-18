@@ -1,0 +1,70 @@
+<div *ngIf="hideAddStudentForm" class="container">
+  <div class="row">
+    <div *ngIf="showStudentTable">
+      <div class="container">
+        <i class="fa fa-plus" title="Add student" aria-hidden="true" (click)="addStudentForm()"></i>
+        <div class="wrapper">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">First-name</th>
+                <th scope="col">Last-name</th>
+                <th scope="col">Id</th>
+                <th scope="col">Adress</th>
+                <th scope="col">Phone-number</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr scope="row" *ngFor="let student of arSpecCourseStudents">
+                <td>{{ student.FirstName }}</td>
+                <td>{{ student.LastName }}</td>
+                <td>{{ student.StudentId }}</td>
+                <td>{{student.Adress}}</td>
+                <td>{{student.PhoneNumber}}</td>
+                <td>
+                  <i class="fa fa-pencil-square-o" title="Edit student" aria-hidden="true" (click)="editStudent(student)"></i>
+                </td>
+                <td>
+                  <i class="fa fa-trash-o" aria-hidden="true" title="Delete student" data-toggle="modal" data-target="#exampleModalLong" (click)="PopUpToDelete(student)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Delete student</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want delete this student?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary" (click)="deleteStudent()" data-toggle="modal" data-target="#exampleModalLong">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!showStudentTable">
+      <app-edit-student-component (updateStudent)="toggleEdit($event)" [studentToEdit]="studentToEdit"></app-edit-student-component>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!hideAddStudentForm">
+  <app-add-student-component (addStudentToArray)="addStudent($event)" [arSpecCourseStudents] = "arSpecCourseStudents" (hideAddForm)="showTable($event)" [courseToPassData]="courseToPassData">
+  </app-add-student-component>
+</div>

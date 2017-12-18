@@ -1,0 +1,20 @@
+<div *ngIf="toggleStudentsTable" class="container">
+  <div class="row">
+    <div class="card" *ngFor="let course of arCourses">
+      <div class="card-block">
+        <h3 class="card-title"> {{ course.Name }} </h3>
+        <p class="card-text">
+          Class-name: {{ course.ClassName }}
+          <br> Course-number: {{ course.Id }}
+          <br> Day: {{ course.Day }}, {{ course.Time | date: 'dd/MM/yyyy' }}
+          <br> Time: {{ course.Time | date:'shortTime' }}
+        </p>
+        <a (click)="watchStudents(course)" class="btn btn-primary">Explore</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!toggleStudentsTable">
+  <app-student-copmonent [courseToPassData]="passCourseIdToStudents"></app-student-copmonent>
+</div>

@@ -1,0 +1,22 @@
+.card{
+  position: relative;
+  margin: 5%;
+  text-align: center;
+  display: inline-block;
+  padding: 1%;
+  -moz-box-shadow: 0 0 10px #ccc;
+  -webkit-box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 20px #ccc;
+  border-color: black;
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn:hover{
+  cursor: pointer;
+}
+
+.col-9{
+  margin-top:2%;
+}
